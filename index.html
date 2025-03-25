@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            color: #32CD32; /* Lime Green */
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border-left: 5px solid #32CD32;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        .count {
+            font-size: 28px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Number Of Users</h1>
+    <div class="card">
+        <p class="count" id="totalUsers">0</p>
+    </div>
+    <div class="card">
+        <p id="totalPoints">0 - Green Points Mined.</p>
+    </div>
+    <div class="card">
+        <p id="todayActive">0 - Today Active Users.</p>
+    </div>
+    <div class="card">
+        <p id="joinToday">0 - Today Joined Users.</p>
+    </div>
+</div>
+
+<script>
+    fetch("https://statsgreen.tharunowner001.workers.dev/") // Replace with your actual API URL
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("totalUsers").textContent = data.totalUsers;
+            document.getElementById("totalPoints").textContent = `${data.totalPoints.toLocaleString()} - Green Points Mined.`;
+            document.getElementById("todayActive").textContent = `${data.todayActive.toLocaleString()} - Today Active Users.`;
+            document.getElementById("joinToday").textContent = `${data.joinToday.toLocaleString()} - Today Joined Users.`;
+        })
+        .catch(error => console.error("Error fetching data:", error));
+</script>
+
+</body>
+</html>
