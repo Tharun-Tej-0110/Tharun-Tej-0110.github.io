@@ -66,7 +66,7 @@
         .then(data => {
             document.getElementById("totalUsers").textContent = data.totalUsers;
             document.getElementById("totalPoints").textContent = `${data.totalPoints.toLocaleString()} - Green Points Mined.`;
-            document.getElementById("todayActive").textContent = `${data.todayActive.toLocaleString()} - Today Active Users.`;
+            document.getElementById("todayActive").textContent = `${data.activeToday.toLocaleString()} - Today Active Users.`;
             document.getElementById("joinToday").textContent = `${data.joinToday.toLocaleString()} - Today Joined Users.`;
         })
         .catch(error => console.error("Error fetching data:", error));
